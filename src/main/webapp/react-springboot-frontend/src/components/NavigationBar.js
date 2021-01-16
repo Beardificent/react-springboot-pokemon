@@ -11,7 +11,7 @@ export default class NavigationBar extends Component {
                         src="https://cdn.bulbagarden.net/upload/c/c5/Spr_1y_004.png" width="40" height="40" alt="BrandLogo" className="mr-2"/>React Spring Boot
                     </Link>
                 <Nav className="mr-auto">
-                    <Link to={"add"} style={{color: 'white'}} className="navbar-link m-2">Add Pokemon</Link>
+                    <Link to={"add"} style={{color: 'white'}} className="navbar-link m-2">Add</Link>
                     <Link to={"dex"} style={{color: 'white'}} className="navbar-link m-2">Pokedex</Link>
                 </Nav>
             </Navbar>
