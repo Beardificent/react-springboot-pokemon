@@ -2,11 +2,10 @@ import React, {Component} from "react";
 import {Card, Table} from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faList } from '@fortawesome/free-solid-svg-icons';
-import axios from "axios";
 
 export default class Pokedex extends Component{
 
-    url = "https://pokeapi.co/api/v2/pokemon/";
+   // url = "https://pokeapi.co/api/v2/pokemon/";
 
     constructor(props){
         super(props);
@@ -15,10 +14,10 @@ export default class Pokedex extends Component{
         }
     }
 
-    componentDidMount() {
+/*    componentDidMount() {
         axios.get(this.url)
             .then(response => console.log(response.data));
-    }
+    }*/
 
     render(){
         return(
@@ -29,7 +28,7 @@ export default class Pokedex extends Component{
                     <Table striped bordered hover variable="dark" className=" text-white">
                         <thead>
                         <tr>
-                            <th>#</th>
+                            <th>{{statusCode}}</th>
                             <th>Name</th>
                             <th>Type</th>
                             <th>Description</th>

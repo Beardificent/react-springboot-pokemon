@@ -1,4 +1,4 @@
-package com.example.reactspringbootworkshop.pokeapi;
+package com.example.reactspringbootworkshop.pokemon;
 
 public class PokemonData {
 
