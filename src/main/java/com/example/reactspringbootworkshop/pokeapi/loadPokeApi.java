@@ -1,45 +1,45 @@
 package com.example.reactspringbootworkshop.pokeapi;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 public class loadPokeApi {
 
     public static void main(String[] args) {
-        BufferedReader bufferedReader;
-        String line;
-        StringBuffer responseContent = new StringBuffer();
-
-        try {
-            URL url = new URL("https://pokeapi.co/api/v2/pokemon/");
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-            //Request setup
-            connection.setRequestMethod("GET");
-            connection.setConnectTimeout(5000);
-            connection.setReadTimeout(5000);
-            int statusCode = connection.getResponseCode();
-            System.out.println(statusCode);
-
-            if (statusCode > 299){
-                bufferedReader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
-                while((line = bufferedReader.readLine()) != null){
-                    responseContent.append(line);
-                }
-                bufferedReader.close();
-            } else {
-                bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                while((line = bufferedReader.readLine()) != null){
-                    responseContent.append(line);
-                }
-                bufferedReader.close();
-            }
-            System.out.println(responseContent.toString());
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://pokeapi.co/api/v2/pokemon/"))
+                .header("Content-Type", "application/json")
+                .build();
+        client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                .thenApply(HttpResponse::body)
+                .thenApply(loadPokeApi::parseJson)
+                .join();
     }
+    
+public static String parseJson (String responseBody){
+    JSONObject result;
+    try {
+        result = new JSONObject(responseBody);
+        System.out.println(result);
+        JSONArray pokemons = result.getJSONArray("results");
+        for(int i = 0; i < pokemons.length(); i++){
+           JSONObject pokemon = pokemons.getJSONObject(i);
+            System.out.println(pokemon);
+            String name = pokemon.getString("name");
+            System.out.println(name);
+        }
+    } catch (JSONException e) {
+        e.printStackTrace();
+    }
+
+        return null;
+}
+
 }
