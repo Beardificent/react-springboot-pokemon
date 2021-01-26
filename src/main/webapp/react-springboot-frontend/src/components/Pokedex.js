@@ -2,8 +2,24 @@ import React, {Component} from "react";
 import {Card, Table} from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faList } from '@fortawesome/free-solid-svg-icons';
+import axios from "axios";
 
-export default class AddPokemon extends Component{
+export default class Pokedex extends Component{
+
+    url = "https://pokeapi.co/api/v2/pokemon/";
+
+    constructor(props){
+        super(props);
+        this.state = {
+        pokemon: []
+        }
+    }
+
+    componentDidMount() {
+        axios.get(this.url)
+            .then(response => console.log(response.data));
+    }
+
     render(){
         return(
             <Card className={"border border-dark bg-dark text-white"}>
