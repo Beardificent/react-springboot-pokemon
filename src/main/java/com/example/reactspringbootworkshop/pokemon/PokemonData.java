@@ -2,24 +2,60 @@ package com.example.reactspringbootworkshop.pokemon;
 
 public class PokemonData {
 
-    private String name;
-    private Double height;
-    private Double weight;
+    private int pokemonId;
+    private String pokemonName;
+    private String pokemonTypeOne;
+    private String pokemonTypeTwo;
+    private String pokemonDescription;
+    private String[] pokemonMoves;
 
-
-    public PokemonData() {
-
+    public int getPokemonId() {
+        return pokemonId;
     }
 
-    public String getName() {
-        return name;
+    public void setPokemonId(int pokemonId) {
+        this.pokemonId = pokemonId;
     }
 
-    public Double getHeight() {
-        return height;
+    public String getPokemonName() {
+        return pokemonName;
     }
 
-    public Double getWeight() {
-        return weight;
+    public void setPokemonName(String pokemonName) {
+        this.pokemonName = pokemonName;
     }
+
+    public String getPokemonTypeOne() {
+        return pokemonTypeOne;
+    }
+
+    public void setPokemonTypeOne(String pokemonTypeOne) {
+        this.pokemonTypeOne = pokemonTypeOne;
+    }
+
+    public String getPokemonTypeTwo() {
+        return pokemonTypeTwo;
+    }
+
+    public void setPokemonTypeTwo(String pokemonTypeTwo) {
+        this.pokemonTypeTwo = pokemonTypeTwo;
+    }
+
+    public String getPokemonDescription() {
+        return pokemonDescription;
+    }
+
+    public void setPokemonDescription(String pokemonDescription) {
+        this.pokemonDescription = pokemonDescription;
+    }
+
+    public String[] getPokemonMoves() {
+        return pokemonMoves;
+    }
+
+    public void setPokemonMoves(String[] pokemonMoves) {
+        this.pokemonMoves = pokemonMoves;
+    }
+
+
 }
